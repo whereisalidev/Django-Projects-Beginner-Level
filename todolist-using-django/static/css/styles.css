@@ -1,0 +1,4 @@
+h3.my-5::first-letter {
+    font-size: 45px;
+    font-style: italic;
+}
