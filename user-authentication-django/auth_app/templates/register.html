@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <title>Registration</title>
+</head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="registration form">
+      <header>Registration</header>
+      <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+
+        <!-- Username field -->
+        <input type="text" name="username" placeholder="Enter your username" value="{{ form.username.value|default_if_none:'' }}">
+        {% if form.username.errors %}
+          <div class="error" style="color: red;">{{ form.username.errors }}</div>
+        {% endif %}
+
+        <!-- Password field -->
+        <input type="password" name="password1" placeholder="Create a password">
+        {% if form.password1.errors %}
+          <div class="error" style="color: red;">{{ form.password1.errors }}</div>
+        {% endif %}
+
+        <!-- Confirm Password field -->
+        <input type="password" name="password2" placeholder="Confirm your password">
+        {% if form.password2.errors %}
+          <div class="error" style="color: red;">{{ form.password2.errors }}</div>
+        {% endif %}
+
+        <!-- Submit button -->
+        <input type="submit" class="button" value="Signup">
+      </form>
+      <div class="signup">
+        <span>Already have an account?
+         <a href="{% url 'login' %}">Login</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+      <header>Login</header>
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+
+        <!-- Username field -->
+        <input type="text" name="username" placeholder="Enter your username" value="{{ form.username.value|default_if_none:'' }}">
+        {% if form.username.errors %}
+          <div class="error" style="color: red;">{{ form.username.errors }}</div>
+        {% endif %}
+
+        <!-- Password field -->
+        <input type="password" name="password" placeholder="Enter your password">
+        {% if form.password.errors %}
+          <div class="error" style="color: red;">{{ form.password.errors }}</div>
+        {% endif %}
+        {% if form.non_field_errors %}
+          <div class="error" style="color: red;">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <!-- Submit button -->
+        <input type="submit" class="button" value="Login">
+      </form>
+      <div class="signup">
+        <span class="signup">Don't have an account?
+          <a href="{% url "register" %}">Register</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

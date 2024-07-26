@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensures the body takes up the full height of the viewport */
+            margin: 0;
+            background: #009579; /* Optional: background color to match your theme */
+            color: white; /* Ensures text color contrasts well with the background */
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Space between the heading and the button */
+        }
+
+        .logout {
+            padding: 12px 35px;
+            background-color: yellow;
+            font-weight: bold;
+            border-style: none;
+            transition: background-color 0.3s;
+            color: black; /* Ensures the text color on the button contrasts with the yellow background */
+        }
+        
+        .logout:hover {
+            background-color: black;
+            color: white; /* Changes text color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>WELCOME TO HOME<br><i>{{request.user.username}}</i></h1>
+        <button class="logout" onclick="window.location.href='{% url 'logout' %}'">Logout</button>
+    </div>
+</body>
+</html>
